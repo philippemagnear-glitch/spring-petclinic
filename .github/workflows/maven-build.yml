@@ -28,3 +28,24 @@ jobs:
           cache: maven
       - name: Build with Maven Wrapper
         run: ./mvnw -B verify
+
+        
+
+  inspect-openclassrooms:
+    runs-on: ubuntu-latest
+
+    container:
+      image: laurentgrangeau/oc-devops:23.37
+
+    steps:
+      - name: Recuperer le projet
+        uses: actions/checkout@v4
+
+      - name: Examiner les outils disponibles
+        run: |
+          echo "=== Java ==="
+          java -version
+          echo "=== Maven ==="
+          mvn -version
+          echo "=== Fichiers ==="
+          ls -la
